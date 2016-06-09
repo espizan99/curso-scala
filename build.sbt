@@ -5,7 +5,8 @@ scalaVersion := "2.11.7"
 organization := "org.hablapps"
 
 unmanagedSourceDirectories in Compile ++= Seq(
-  baseDirectory.value / "tema0-scalaintro"
+  baseDirectory.value / "tema0-scalaintro",
+  baseDirectory.value / "tema1-hofs"
 )
 
 resourceDirectory in Compile := baseDirectory.value / "resources"
@@ -27,8 +28,7 @@ libraryDependencies ++= Seq(
   "com.etaty.rediscala" %% "rediscala" % "1.3.1",
   "io.spray" %% "spray-client" % "1.3.3",
   "io.spray" %% "spray-json" % "1.3.2",
-  "org.scalatest" %% "scalatest" % "2.2.6",
-  "org.scalacheck" %% "scalacheck" % "1.12.5"
+  "org.scalatest" %% "scalatest" % "2.2.6"
 )
 
 scalacOptions ++= Seq(
@@ -41,10 +41,5 @@ scalacOptions ++= Seq(
   "-language:higherKinds")
 
 initialCommands in console := """
-  | import org.hablapps.scalaintro._
-  | import oo._
-  | import funcional._
-  | import azucar._
-  | import implicitos._
-  | import genericidad._
+  | import org.hablapps.fpinscala.hofs._
   |""".stripMargin
