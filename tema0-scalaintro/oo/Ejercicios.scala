@@ -8,7 +8,7 @@ object Ejercicios extends App {
     // salida. Toma el método `color` como referencia.
     trait Fruta {
       def color: String
-      ???
+      def precio: Double
     }
   }
 
@@ -22,7 +22,10 @@ object Ejercicios extends App {
     // tendrás que utilizar la sintaxis de clases anónimas para poder crear una
     // instancia. `new Fruta { ... }`
     object Fruta {
-      def crear(_color: String): Fruta = ???
+      def crear(_color: String): Fruta = new Fruta {
+        val color :String = _color
+        val precio: Double = 3.0
+      }
     }
   }
 
@@ -31,24 +34,27 @@ object Ejercicios extends App {
   object Ejercicio3 {
     // Extiende la clase `Platano`, para que herede de `Fruta`, fijando el
     // método `color` a "amarillo" y recibiendo el precio en el constructor.
-    class Platano {
-      def color: String = ???
+    class Platano(val precio: Double) extends Fruta{
+      val color: String = "amarillo"
     }
   }
 
+//Con el '_' se importa todo lo que haya en este objeto
   import Ejercicio3._
 
   object Ejercicio4 {
     // Crea una fruta de cualquier color (utilizando `Fruta.crear`) y un plátano
     // de cualquier precio (utilizando el constructor de la clase `Platano`).
-    val fruta: Fruta = ???
-    val platano: Platano = ???
+    val fruta: Fruta = Fruta.crear("verde")
+    val platano: Platano = new Platano(3.0)
   }
 
   import Ejercicio4._
 
   // Ejecuta `org.hablapps.scalaintro.oo.Ejercicios` y asegúrate de que el precio de
   // la `fruta` (3.0) y el color del `platano` ("amarillo") sean correctos.
-  println("El precio de la fruta es: " + ???)
-  println("El color del plátano es: "  + ???)
+  println("El precio de la fruta es: " + fruta.precio)
+  println("El color de la fruta es: " + fruta.color)
+  println("El precio del plátano es: "  + platano.precio)
+  println("El color del plátano es: "  + platano.color)
 }
