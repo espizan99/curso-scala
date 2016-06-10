@@ -25,6 +25,9 @@ object Ejercicios extends App {
       def crear(_color: String): Fruta = new Fruta {
         val color :String = _color
         val precio: Double = 3.0
+
+        override val color: String = _color
+        override def precio: Double = 3.0
       }
     }
   }
@@ -34,8 +37,11 @@ object Ejercicios extends App {
   object Ejercicio3 {
     // Extiende la clase `Platano`, para que herede de `Fruta`, fijando el
     // método `color` a "amarillo" y recibiendo el precio en el constructor.
+
     class Platano(val precio: Double) extends Fruta{
       val color: String = "amarillo"
+    class Platano(val precio: Double) extends Fruta {
+      def color: String = "amarillo"
     }
   }
 
@@ -47,6 +53,9 @@ object Ejercicios extends App {
     // de cualquier precio (utilizando el constructor de la clase `Platano`).
     val fruta: Fruta = Fruta.crear("verde")
     val platano: Platano = new Platano(3.0)
+
+    val fruta: Fruta = Fruta.crear("morado")
+    val platano: Platano = new Platano(12.23)
   }
 
   import Ejercicio4._

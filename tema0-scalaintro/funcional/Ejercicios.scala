@@ -10,6 +10,8 @@ object Ejercicios extends App {
         case Fin() => l2
         case Cons(c, r) => new Cons(c, concatenar(r, l2))
         case _ => ???
+
+        case Cons(h, t) => Cons(h, concatenar(t, l2))
       }
     }
   }
@@ -25,6 +27,11 @@ object Ejercicios extends App {
         case Fin() => false
         case Cons(c, r) => f(c) || existe(r, f)
       }
+    def existe(l: Lista, f: Int => Boolean): Boolean = l match {
+      case Fin() => false
+      case Cons(h, t) =>
+        if (f(h)) true
+        else existe(t, f)
     }
   }
 
@@ -38,6 +45,8 @@ object Ejercicios extends App {
     def contiene(l: Lista, v: Int): Boolean = {
       existe(l, i => i == v)
     }
+    def contiene(l: Lista, v: Int): Boolean =
+      existe(l, _ == v)
   }
 
   object Ejercicio4 {
@@ -52,6 +61,11 @@ object Ejercicios extends App {
         case Fin() => Fin()
         case Cons(h, r) => if(f(h)) {tirarMientras(r, f)} else {l}
       }
+
+    def tirarMientras(l: Lista, f: Int => Boolean): Lista = l match {
+      case Cons(h, t) if f(h) => tirarMientras(t, f)
+      case xs: Cons => xs
+      case f@Fin() => f
     }
   }
 }

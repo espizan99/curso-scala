@@ -33,7 +33,7 @@ Prerrequisitos: es necesario que tengáis instalado Java en vuestra máquina. Re
 Este repositorio contiene una copia de `sbt`, la herramienta de builds de Scala más común. Una vez clonado localmente el repositorio, mediante el siguiente comando se descargarán todas las dependencias necesarias para compilar los programas del curso (las librerías [scalaz](https://github.com/scalaz/scalaz/tree/v7.2.0-M5), [cats](https://github.com/non/cats/tree/v0.3.0), etc., y el propio compilador de Scala):  
 
 ```bash
-$ cd funcourseinscala-singular
+$ cd funcourseinscala-packlink
 $ ./sbt ~update
 ```
 
@@ -51,7 +51,7 @@ El correo electrónico del coordinador del curso es: [juanmanuel.serrano@hablapp
 
 Para resolver dudas y fomentar la colaboración entre los alumnos, se dispone del siguiente chat moderado por el equipo de Habla Computing:
 
-https://gitter.im/hablapps/funcourse-singular
+https://gitter.im/hablapps/funcourse-packlink
 
 #### Twitter
 

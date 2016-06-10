@@ -53,3 +53,15 @@ sealed trait Lista {
 }
 
 
+  def insertar(head: Int): Lista = new Cons(head, this)
+  def suma: Int = this match {
+    case Cons(head, tail) => head + tail.suma
+    case Fin() => 0
+  }
+  def map(f: Int => Int): Lista = this match {
+    case Cons(head, tail) => Cons(f(head), tail.map(f))
+    case Fin() => Fin()
+  }
+}
+case class Cons(head: Int, tail: Lista) extends Lista
+case class Fin() extends Lista
