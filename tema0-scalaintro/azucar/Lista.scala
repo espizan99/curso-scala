@@ -46,13 +46,10 @@ package org.hablapps.scalaintro.azucar
 
  case class Nada() extends Lista
 
-=======
->>>>>>> b98f2fce0504dcb8212ce571f4281aa82029a81d
 // 1. Aplicación de parámetros por defecto en el constructor de `Cons`.
 
 // 2. Método variadico `crear` para creación de listas.
 // 3. Renombramiento de `crear` por `apply`
-<<<<<<< HEAD
 object Lista {
 	def apply(elems: Int*): Lista = 
 		if(elems.isEmpty)
@@ -61,9 +58,7 @@ object Lista {
 			Cons(elems.head, apply(elems.tail: _*))//Se hace un casting explicito a un argumento variable con _*
 }
 
-
-=======
-
+ /* Otra implementacion
 sealed trait Lista {
 
   def insertar(elemento: Int): Lista = {
@@ -106,7 +101,8 @@ sealed trait Lista {
 }
 case class Cons(cabeza: Int, resto: Lista = Nada()) extends Lista
 case class Nada() extends Lista
-
+*/
+/* Otra implementacion
 object Lista {
   def apply(elems: Int*): Lista =
     if (elems.isEmpty)
@@ -114,3 +110,4 @@ object Lista {
     else
       Cons(elems.head, Lista(elems.tail: _*))
 }
+*/

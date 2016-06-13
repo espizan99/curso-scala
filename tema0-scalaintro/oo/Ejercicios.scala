@@ -25,9 +25,11 @@ object Ejercicios extends App {
       def crear(_color: String): Fruta = new Fruta {
         val color :String = _color
         val precio: Double = 3.0
-
+        /** otra implementacion
         override val color: String = _color
         override def precio: Double = 3.0
+        * 
+        */
       }
     }
   }
@@ -40,9 +42,13 @@ object Ejercicios extends App {
 
     class Platano(val precio: Double) extends Fruta{
       val color: String = "amarillo"
+    }
+    /** otra impl
     class Platano(val precio: Double) extends Fruta {
       def color: String = "amarillo"
     }
+    * 
+    */
   }
 
 //Con el '_' se importa todo lo que haya en este objeto
@@ -54,8 +60,11 @@ object Ejercicios extends App {
     val fruta: Fruta = Fruta.crear("verde")
     val platano: Platano = new Platano(3.0)
 
+    /* otra imple
     val fruta: Fruta = Fruta.crear("morado")
     val platano: Platano = new Platano(12.23)
+    * 
+    */
   }
 
   import Ejercicio4._

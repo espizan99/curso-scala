@@ -52,6 +52,7 @@ class BicicletaManyConstructors( val cadencia: Int, val marcha: Int, val velocid
 class BicicletaMethod(val cadencia: Int, val marcha: Int, val velocidad: Int) {
 
 	def frenar(decremento: Int): BicicletaMethod = new BicicletaMethod(cadencia, marcha, velocidad-decremento)
+}
 // class Bicicleta(val cadencia: Int, val velocidad: Int, val marcha: Int)
 
 // 4. Podemos declarar constructores adicionales mediante `def this`:
@@ -62,6 +63,7 @@ class BicicletaMethod(val cadencia: Int, val marcha: Int, val velocidad: Int) {
 
 // 5. Los métodos se añaden utilizando `def`. Podemos, por ejemplo, permitir que
 // nuestra bicicleta pueda frenar la velocidad dado un decremento.
+/* Otra implementacion
 case class Bicicleta(val cadencia: Int, val velocidad: Int, val marcha: Int) {
   def this(cadencia: Int, velocidad: Int) =
     this(cadencia, velocidad, 100)
@@ -69,6 +71,8 @@ case class Bicicleta(val cadencia: Int, val velocidad: Int, val marcha: Int) {
   def frenar(decremento: Int): Bicicleta =
     new Bicicleta(cadencia, velocidad-decremento, marcha)
 }
+* 
+*/
 
 // 6. Es posible tener clases con una única instancia, lo que se conoce como
 // Singleton Objects. Este componente nos permite reemplazar los miembros de
@@ -85,6 +89,7 @@ object FabricaDeBicicletas {
 object BicicletaMethod {
 
 	def crear(_cadencia: Int): BicicletaMethod = new BicicletaMethod(_cadencia, 200, 300)	
+}
 
 // object FactoriaDeBicicletas {
 //   val velocidadPorDefecto: Int = 25

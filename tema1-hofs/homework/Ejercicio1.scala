@@ -4,7 +4,10 @@ object Exercise1 {
 
   object PartI {
     // Implementa `filter` para el tipo `Option`
-    def filter[A](o: Option[A])(p: A => Boolean): Option[A] = ???
+    def filter[A](o: Option[A])(p: A => Boolean): Option[A] = o match {
+      case None => None;
+      case Some(x) => if(p(x)) Some(x) else None;
+    }
 
     // Implementa `map` para el tipo `Option`
     def map[A, B](o: Option[A])(f: A => B): Option[B] = o match {

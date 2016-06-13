@@ -52,7 +52,7 @@ sealed trait Lista {
 	}
 }
 
-
+/* Otra implementacion
   def insertar(head: Int): Lista = new Cons(head, this)
   def suma: Int = this match {
     case Cons(head, tail) => head + tail.suma
@@ -63,5 +63,8 @@ sealed trait Lista {
     case Fin() => Fin()
   }
 }
+
 case class Cons(head: Int, tail: Lista) extends Lista
 case class Fin() extends Lista
+* 
+*/

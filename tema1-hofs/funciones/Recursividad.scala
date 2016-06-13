@@ -20,7 +20,7 @@ object Recursividad {
     @scala.annotation.tailrec
     def go(acc: Int, _n: Int): Int = {
       if (_n > 1)
-        go(_n * acc, _n - 1)
+        go(_n * acc, _n - 1)//Scala es capaz de optimizar este tipo de funciones
       else
         acc
     }
