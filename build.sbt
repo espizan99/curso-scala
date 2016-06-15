@@ -9,6 +9,11 @@ unmanagedSourceDirectories in Compile ++= Seq(
   baseDirectory.value / "tema1-hofs"
 )
 
+unmanagedSourceDirectories in Test ++= Seq(
+  baseDirectory.value / "tema0-scalaintro" / "test",
+  baseDirectory.value / "tema1-hofs" / "test"
+)
+
 resourceDirectory in Compile := baseDirectory.value / "resources"
 
 resolvers ++= Seq(

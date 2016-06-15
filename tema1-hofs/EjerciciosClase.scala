@@ -1,6 +1,6 @@
 package org.hablapps.fpinscala.hofs
 
-object EjerciciosClase extends App {
+object EjerciciosClase {
 
   // Ejercicio Diagrams: Implementar las figuras del tetris con la
   // librería de diagrams

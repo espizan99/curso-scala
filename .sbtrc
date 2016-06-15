@@ -1,0 +1,17 @@
+alias test-tema0=;test-only org.hablapps.scalaintro.test.*
+alias test-tema0-fun=;test-only org.hablapps.scalaintro.test.FuncionalSpec
+alias test-tema0-gen=;test-only org.hablapps.scalaintro.test.GenericidadSpec
+alias test-tema0-oo=;test-only org.hablapps.scalaintro.test.OOSpec
+alias test-tema1=;test-only org.hablapps.fpinscala.hofs.test.*
+alias test-tema1-clase=;test-only org.hablapps.fpinscala.hofs.test.ClaseSpec
+alias test-tema1-ej1=;test-only org.hablapps.fpinscala.hofs.test.Ej1Spec
+alias test-tema1-ej2=;test-only org.hablapps.fpinscala.hofs.test.Ej2Spec
+alias test-tema1-ej3=;test-only org.hablapps.fpinscala.hofs.test.Ej3Spec
+alias test-tema2=;test-only org.hablapps.fpinscala.typeclasses.test.*
+alias test-tema2-clase=;test-only org.hablapps.fpinscala.typeclasses.test.ClaseSpec
+alias test-tema2-tc=;test-only org.hablapps.fpinscala.typeclasses.test.HomeTCSpec
+alias test-tema2-constructors=;test-only org.hablapps.fpinscala.typeclasses.test.HomeTypeConstructorsSpec
+alias test-tema3=;test-only org.hablapps.fpinscala.lenguajes.test.*
+alias test-tema3-clase=;test-only org.hablapps.fpinscala.lenguajes.test.ClaseSpec
+alias test-tema3-imperativos=;test-only org.hablapps.fpinscala.lenguajes.test.HomeworkImperativosSpec
+alias test-tema3-terminal=;test-only org.hablapps.fpinscala.lenguajes.test.HomeworkTerminalSpec

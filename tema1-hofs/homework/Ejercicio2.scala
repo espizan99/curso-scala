@@ -1,4 +1,4 @@
-package org.hablapps.fpinscala.tema1.homework
+package org.hablapps.fpinscala.hofs.homework
 
 object Exercise2 {
 
