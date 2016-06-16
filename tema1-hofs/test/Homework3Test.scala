@@ -17,7 +17,7 @@ class Ej3Spec extends FlatSpec with Matchers {
   }
 
   "Eval" should "funcionar de forma correcta para IntExpr" in {
-    PartII.depth(e1) shouldBe 27
+    PartII.eval(e1) shouldBe 27
   }
 
   "PrettyFold" should "funcionar de forma correcta para IntExpr" in {
@@ -29,7 +29,7 @@ class Ej3Spec extends FlatSpec with Matchers {
   }
 
   "EvalFold" should "funcionar de forma correcta para IntExpr" in {
-    PartIII.depth(e1) shouldBe 27
+    PartIII.eval(e1) shouldBe 27
   }
 
 }
