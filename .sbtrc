@@ -10,6 +10,7 @@ alias test-tema1-ej3=;test-only org.hablapps.fpinscala.hofs.test.Ej3Spec
 alias test-tema2=;test-only org.hablapps.fpinscala.typeclasses.test.*
 alias test-tema2-clase=;test-only org.hablapps.fpinscala.typeclasses.test.ClaseSpec
 alias test-tema2-tc=;test-only org.hablapps.fpinscala.typeclasses.test.HomeTCSpec
+alias test-tema2-extensibility=;test-only org.hablapps.fpinscala.typeclasses.test.HomeExtensibilitySpec
 alias test-tema2-constructors=;test-only org.hablapps.fpinscala.typeclasses.test.HomeTypeConstructorsSpec
 alias test-tema3=;test-only org.hablapps.fpinscala.lenguajes.test.*
 alias test-tema3-clase=;test-only org.hablapps.fpinscala.lenguajes.test.ClaseSpec

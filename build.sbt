@@ -6,12 +6,14 @@ organization := "org.hablapps"
 
 unmanagedSourceDirectories in Compile ++= Seq(
   baseDirectory.value / "tema0-scalaintro",
-  baseDirectory.value / "tema1-hofs"
+  baseDirectory.value / "tema1-hofs",
+  baseDirectory.value / "tema2-typeclasses"
 )
 
 unmanagedSourceDirectories in Test ++= Seq(
   baseDirectory.value / "tema0-scalaintro" / "test",
-  baseDirectory.value / "tema1-hofs" / "test"
+  baseDirectory.value / "tema1-hofs" / "test",
+  baseDirectory.value / "tema2-typeclasses" / "test"
 )
 
 resourceDirectory in Compile := baseDirectory.value / "resources"
