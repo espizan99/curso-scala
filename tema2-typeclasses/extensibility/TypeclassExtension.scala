@@ -14,10 +14,11 @@ object TypeclassExtensions{
     // de las expresiones aritméticas. Puede entenderse, por tanto, como
     // una factoría abstracta de expresiones. 
 
-    trait Exp[E] {
+    trait Exp[E]{
       def lit(i: Int): E
       def add(e1: E, e2: E): E
     }
+
 
     object Exp{
 
@@ -27,17 +28,20 @@ object TypeclassExtensions{
       import ADTExtensions.{Initial=>adt}, adt.{Lit, Add}
 
       object ADTExp extends Exp[adt.Exp]{
-        def lit(i: Int): adt.Exp = ???
-        def add(e1: adt.Exp, e2: adt.Exp): adt.Exp = ???
+        def lit(i: Int): adt.Exp = Lit(i)
+        def add(e1: adt.Exp, e2: adt.Exp): adt.Exp =
+          Add(e1,e2)
       }
 
       // Helper methods para trabajar con la factoría más cómodamente.
       
       object Syntax{
-        def lit[E](i: Int)(implicit E: Exp[E]) = E.lit(i)
+        def lit[E](i: Int)(implicit E: Exp[E]) = 
+          E.lit(i)
 
-        implicit class BinOps[E](e1: E)(implicit E: Exp[E]){
-          def +(e2: E) = ???
+        implicit class BinOps[E](e1: E)(
+          implicit E: Exp[E]){
+          def +(e2: E) = E.add(e1,e2)
         }
       }
 
@@ -82,8 +86,9 @@ object TypeclassExtensions{
       implicit object eval extends Eval
 
       trait Eval extends Exp[Value] {
-        def lit(i: Int): Value = ???
-        def add(e1: Value, e2: Value): Value = ???
+        def lit(i: Int): Value = VInt(i)
+        def add(e1: Value, e2: Value): Value =
+          VInt(e1.getInt + e2.getInt)
       }
 
       object DirectEvaluation{
@@ -92,7 +97,7 @@ object TypeclassExtensions{
         val v1: Value = expr(eval)
 
         // or directly
-        val v: Value = lit(1) + lit(3)
+        // val v: Value = lit(1) + lit(3)
       }
 
     }
@@ -109,8 +114,9 @@ object TypeclassExtensions{
       object print extends Print
 
       trait Print extends Exp[String] {
-        def lit(i: Int): String = ???
-        def add(e1: String, e2: String): String = ???
+        def lit(i: Int): String = s"Lit($i)"
+        def add(e1: String, e2: String): String =
+          s"Add(${e1}, ${e2})"
       }
     }
   }
@@ -133,12 +139,14 @@ object TypeclassExtensions{
     object IntBoolExp{
       object eval extends Eval
 
-      trait Eval extends IntBoolExp[Value] with Initial.Exp.Eval{
+      trait Eval extends IntBoolExp[Value] 
+        with Initial.Exp.Eval{
         def bool(b: Boolean): Value = ???
         def iff(e1: Value, e2: Value, e3: Value): Value = ???
       }
 
-      trait Print extends IntBoolExp[String] with FunctionalityExtensions.Exp.Print{
+      trait Print extends IntBoolExp[String] 
+        with FunctionalityExtensions.Exp.Print{
         def bool(b: Boolean): String = ???
         def iff(e1: String, e2: String, e3: String): String = ???
       }

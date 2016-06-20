@@ -24,11 +24,26 @@ object HigherOrderFunctions{
 
   // Abstracción
 
+  def collapse[T](l: List[T])(
+    zero: T, append: (T,T) => T): T = 
+    l match {
+      case Nil => zero
+      case x :: r => append(x, collapse(r)(zero,append))
+    }  
 
   // Composición
 
-  def sumaIntBis(l: List[Int]): Int = ???
+  def sumaIntBis(l: List[Int]): Int =
+    // collapse[Int](l)(0, (x: Int,y: Int) => x+y )
+    collapse(l)(0, _+_ )
     
-  def concatBis(l: List[String]): String = ???
+  def concatBis(l: List[String]): String =
+    collapse[String](l)("", (x: String,y: String) => x+y)
 
 }
+
+
+
+
+
+

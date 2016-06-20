@@ -49,4 +49,5 @@ scalacOptions ++= Seq(
 
 initialCommands in console := """
   | import org.hablapps.fpinscala.hofs._
+  | import org.hablapps.fpinscala.typeclasses._
   |""".stripMargin

@@ -16,18 +16,44 @@ object TypeClasses{
   // Un monoide define una clase de tipos (type class): aquellos para los que hay 
   // un zero y una operación binaria con esas propiedades.
 
-  trait Monoide[T]
+  trait Monoide[T]{
+    val zero: T
+    def append(t1: T, t2: T): T
+  }
+
+  object Monoide{
+    implicit val IntM: Monoide[Int] = intMonoid
+    implicit val StringM : Monoide[String] = stringMonoid
+  }
 
   // Una vez hecho esto, podemos proporcionar esta información de "golpe"
+
+  def collapse[T](l: List[T])(monoide: Monoide[T]): T = 
+    l match {
+      case Nil => monoide.zero
+      case x :: r => 
+        monoide.append(x, collapse(r)(monoide))
+    }  
 
   
   // Para poder utilizar la estructura debemos instanciar la typeclass `Monoid`
   // con los tipos correspondientes. La composición ya solo requiere pasar 
   // la instancia correspondiente
+  val intMonoid: Monoide[Int] = new Monoide[Int]{
+    val zero: Int = 0
+    def append(t1: Int, t2: Int): Int = t1+t2
+  }
 
+  val stringMonoid: Monoide[String] = new Monoide[String]{
+    val zero: String = ""
+    def append(t1: String, t2: String): String = t1+t2
+  }
   
-  def sumaInt(l: List[Int]): Int = ???
+  def sumaInt(l: List[Int]): Int =
+    collapse(l)(intMonoid: Monoide[Int])
 
-  def concatBis(l: List[String]): String = ???
+  def concatBis(l: List[String]): String =
+    collapse(l)(stringMonoid: Monoide[String])
+
 
 }
