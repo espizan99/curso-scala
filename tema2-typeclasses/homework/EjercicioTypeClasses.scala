@@ -69,7 +69,7 @@ object HomeworkTypeClasses {
       def toDouble(t: T): Double
       def plus(t1: T, t2: T): T
       def minus(t1: T, t2: T): T
-      def divide(t1: T, i2: Int): T
+      def divide(t1: T, i2: Int): Double
     }
   
     object Number {
@@ -83,19 +83,19 @@ object HomeworkTypeClasses {
         def toDouble(i: Int): Double = ???
         def plus(i1: Int, i2: Int): Int = ???
         def minus(i1: Int, i2: Int): Int = ???
-        def divide(i1: Int, i2: Int): Int = ???
+        def divide(i1: Int, i2: Int): Double = ???
       }
       implicit object LongNumber extends Number[Long] {
         def toDouble(l: Long): Double = ???
         def plus(l1: Long, l2: Long): Long = ???
         def minus(l1: Long, l2: Long): Long = ???
-        def divide(l1: Long, i2: Int): Long = ???
+        def divide(l1: Long, i2: Int): Double = ???
       }
       implicit object FloatNumber extends Number[Float] {
         def toDouble(f: Float): Double = ???
         def plus(f1: Float, f2: Float): Float = ???
         def minus(f1: Float, f2: Float): Float = ???
-        def divide(f1: Float, i2: Int): Float = ???
+        def divide(f1: Float, i2: Int): Double = ???
       }
     }
   }
@@ -109,8 +109,11 @@ object HomeworkTypeClasses {
   object ParteII {
   
     import TypeClassParaEstadisticas._
+
     def sum[T](ts: List[T])(implicit ev: Number[T]): T = ???
+
     def avg[T](ts: List[T])(implicit ev: Number[T]): Double = ???
+
     def variance[T](ts: List[T])(implicit ev: Number[T]): Double = ???
 
   }

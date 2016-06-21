@@ -18,7 +18,7 @@ class HomeTCSpec extends FlatSpec with Matchers {
   }
 
   "AvgInt" should "calcular la media de una lista de Ints" in {
-    ParteII.avg(l1) shouldBe 2.0
+    ParteII.avg(l1) shouldBe 2.5
   }
 
   "AvgDouble" should "calcular la media de una lista de Doubles" in {
@@ -26,7 +26,7 @@ class HomeTCSpec extends FlatSpec with Matchers {
   }
 
   "VarianceInt" should "calcular la varianza de una lista de Ints" in {
-    ParteII.variance(l1) shouldBe 1.5
+    ParteII.variance(l1) shouldBe 1.25
   }
 
   "VarianceDouble" should "calcular la varianza de una lista de Doubles" in {
