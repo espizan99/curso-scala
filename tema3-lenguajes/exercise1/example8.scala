@@ -15,7 +15,7 @@ object Example8{
   val l: String= apply(1)(_.toString)
 
   // invocation with an impure function: the execution produces side effects
-  val l2: String = apply(1){ i => println(s"evaluating $i"); i.toString }
+  lazy val l2: String = apply(1){ i => println(s"evaluating $i"); i.toString }
 
 }
 
