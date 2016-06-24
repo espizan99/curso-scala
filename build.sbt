@@ -6,7 +6,21 @@ organization := "org.hablapps"
 
 unmanagedSourceDirectories in Compile ++= Seq(
   baseDirectory.value / "tema0-scalaintro",
-  baseDirectory.value / "tema1-hofs"
+  baseDirectory.value / "tema1-hofs",
+  baseDirectory.value / "tema2-typeclasses",
+  baseDirectory.value / "tema3-lenguajes",
+  baseDirectory.value / "tema4-libs",
+  baseDirectory.value / "tema4-spark"
+)
+
+unmanagedSourceDirectories in Test ++= Seq(
+  baseDirectory.value / "tema0-scalaintro" / "test",
+  baseDirectory.value / "tema1-hofs" / "test",
+  baseDirectory.value / "tema2-typeclasses" / "test",
+  baseDirectory.value / "tema3-lenguajes" / "exercise2" / "test", 
+  baseDirectory.value / "tema3-lenguajes" / "homework1" / "test",
+  baseDirectory.value / "tema3-lenguajes" / "homework2" / "test",
+  baseDirectory.value / "tema4-libs"
 )
 
 resourceDirectory in Compile := baseDirectory.value / "resources"
@@ -28,6 +42,7 @@ libraryDependencies ++= Seq(
   "com.etaty.rediscala" %% "rediscala" % "1.3.1",
   "io.spray" %% "spray-client" % "1.3.3",
   "io.spray" %% "spray-json" % "1.3.2",
+  "org.apache.spark" %% "spark-core" % "1.6.1",
   "org.scalatest" %% "scalatest" % "2.2.6"
 )
 
@@ -41,5 +56,7 @@ scalacOptions ++= Seq(
   "-language:higherKinds")
 
 initialCommands in console := """
-  | import org.hablapps.fpinscala.hofs._
+  | import org.hablapps.fpinscala._
+  | import typeclasses._, diagrams._
+  | import lenguajes._
   |""".stripMargin

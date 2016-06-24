@@ -1,6 +1,6 @@
 package org.hablapps.scalaintro.genericidad
 
-object Ejercicios extends App {
+object Ejercicios {
 
   case class Bicicleta(marcha: Int, cadencia: Int, velocidad: Int)
 
@@ -21,8 +21,6 @@ object Ejercicios extends App {
     val res: List[Bicicleta] = bicicletas.filter(_.marcha % 2 != 0)
   }
 
-  println("El resultado del ejercicio 1 es: " + Ejercicio1.res)
-
   object Ejercicio2 {
     // Busca la bicicleta que circule a mayor velocidad. Pista: utiliza el
     // método `reduce` para llevar a cabo esta implementación. A tener en cuenta:
@@ -36,13 +34,10 @@ object Ejercicios extends App {
     }
   }
 
-  println("El resultado del ejercicio 2 es: " + Ejercicio2.res)
-
   object Ejercicio3 {
     // Suma las cadencias de todas las bicicletas. ¿A qué estructura de control
     // de flujo te recuerda `foldLeft`?
     val res: Int = bicicletas.foldLeft(0)((acc, b) => acc + b.cadencia)
   }
 
-  println("El resultado del ejercicio 3 es: " + Ejercicio3.res)
 }
