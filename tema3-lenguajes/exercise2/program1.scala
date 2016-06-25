@@ -46,7 +46,31 @@ object Program1{
   object Pure{
     import IO.Syntax._
   
-    def writeANumber[F[_]: IO]: F[Unit] = ???
+    def writeANumber[F[_]: IO]: F[Unit] = for {
+      num <- read
+      _ <- write(evenOdd(num))
+    } yield ()
+
+    def writeANumber2[F[_]: IO]: F[Unit] = 
+      read flatMap { num => 
+        write(evenOdd(num)) flatMap { _ => 
+          returns(())
+        }
+      }
+
+    def writeANumber3[F[_]: IO]: F[Unit] = 
+      read flatMap { num => 
+        write(evenOdd(num)) map { _ => 
+          ()
+        }
+      }
   }
+
+
+
+
+
+
+
 
 }

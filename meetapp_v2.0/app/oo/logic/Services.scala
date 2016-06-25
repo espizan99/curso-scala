@@ -17,4 +17,20 @@ trait Services { S: Store =>
     result
   }
 
+  // Esta versión muestra más claramente la correspondencia
+  // con la primera versión funcional (ServicesWithoutSugar)
+  def joinv2(request: JoinRequest): JoinResponse = {
+    val user   = S.getUser(request.uid);
+    val group  = S.getGroup(request.gid);
+    if (group.must_approve) {
+      val regJoin = S.putJoin(request)
+      Left(regJoin)
+    } else {
+      val regMember = S.putMember(Member(None, request.uid, request.gid))
+      Right(regMember)
+    }
+  }
+
+  
+
 }
