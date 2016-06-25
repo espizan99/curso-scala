@@ -61,6 +61,11 @@ object HigherKindGenerics{
       trait ApiId extends Api[Id]{
         def insert[T](t: T): T
       }
+
+      import scala.concurrent.Future
+      trait ApiFuture extends Api[Future]{
+        def insert[T](t: T): Future[T]
+      }
     }
     
         
