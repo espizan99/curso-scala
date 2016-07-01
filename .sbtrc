@@ -15,4 +15,7 @@ alias test-tema3=;test-only org.hablapps.fpinscala.lenguajes.test.*
 alias test-tema3-ejercicio2=;test-only org.hablapps.fpinscala.lenguajes.test.Ejercicio2
 alias test-tema3-homework1=;test-only org.hablapps.fpinscala.lenguajes.test.Homework1Spec
 alias test-tema3-homework2=;test-only org.hablapps.fpinscala.lenguajes.test.Homework2Spec
+alias test-tema4=;testOnly org.hablapps.fpinscala.scalaz.test.*
+alias test-tema4-ej1=;testOnly org.hablapps.fpinscala.scalaz.test.Ejercicio1Props && testOnly org.hablapps.fpinscala.scalaz.test.Ejercicio1Spec
+alias test-tema4-ej2=;testOnly org.hablapps.fpinscala.scalacheck.Ejercicio2
 alias test-tema4-ej3=;testOnly org.hablapps.fpinscala.scalaz.test.Ejercicio3Spec
