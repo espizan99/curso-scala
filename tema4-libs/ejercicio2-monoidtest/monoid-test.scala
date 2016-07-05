@@ -39,11 +39,18 @@ object Ejercicio2 extends Properties("Ejercicio2") {
       fpinscala.scalaz.Ejercicio1.optionMonoid, // Monoid[Option[Int]]
       scalaz.syntax.monoid._
 
+      implicitly[org.scalacheck.Arbitrary[Option[Int]]]
     // t1 * 1 == 1 * t1 == t1
-    property("Demuestra la propiedad del elemento neutro para Option[Int]") = ???
+    property("Demuestra la propiedad del elemento neutro para Option[Int]") =
+      forAll{ (o1: Option[Int]) => 
+        (o1 |+| mzero[Option[Int]]) == o1
+      }
     
     // (t1 * t2) * t3 == t1 * (t2 * t3)
-    property("Demuestra la propiedad de asociatividad para Option[Int]") = ???
+    property("Demuestra la propiedad de asociatividad para Option[Int]") =
+      forAll{ (o1: Option[Int], o2: Option[Int], o3: Option[Int]) => 
+        (o1 |+| (o2 |+| o3)) == ((o1 |+| o2) |+| o3)
+      }
 
   }
 
@@ -65,11 +72,17 @@ object Ejercicio2 extends Properties("Ejercicio2") {
     
     // Crea una instancia de Option[T] para poder utilizarla más adelante
     import scalaz.Equal
-    val optionIntEqual: Equal[Option[Int]] = ???
+    val optionIntEqual: Equal[Option[Int]] = new Equal[Option[Int]]{
+      def equal(a1: Option[Int], a2: Option[Int]): Boolean = a1 == a2
+    }
 
     // Crea la propiedad que comprueba que tupleMonoid[String, Int]
     // cumple las leyes de los monoides.
-    property("Monoid[Option[Int]] is a monoid") = ???
+    property("Monoid[Option[Int]] is a monoid") =
+      monoid.laws(
+        optionMonoid,
+        optionIntEqual,
+        implicitly[org.scalacheck.Arbitrary[Option[Int]]])
   }
 
   include(PartIII)
