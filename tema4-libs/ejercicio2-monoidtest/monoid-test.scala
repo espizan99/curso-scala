@@ -23,7 +23,11 @@ object Ejercicio2 extends Properties("Ejercicio2") {
   object PartI{
     import org.scalacheck.Gen, Gen._
 
-    def tupleGen[A, B](implicit ga: Gen[A], gb: Gen[B]): Gen[(A, B)] = ???
+    def tupleGen[A, B](implicit ga: Gen[A], gb: Gen[B]): Gen[(A, B)] =
+      for {
+        a <- ga
+        b <- gb
+      } yield (a,b)
   }
 
   /**

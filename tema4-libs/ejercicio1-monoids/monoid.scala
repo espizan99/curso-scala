@@ -53,7 +53,8 @@ object Ejercicio1 {
       (acc: A, a: A) => acc |+| a
     ) 
   
-  def foldMap[A, B: Monoid](l: List[A])(f: A=>B): B = ???
+  def foldMap[A, B: Monoid](l: List[A])(f: A=>B): B =
+    l.foldLeft(mzero[B])((b: B, a: A) => b |+| f(a))
 
 }
 

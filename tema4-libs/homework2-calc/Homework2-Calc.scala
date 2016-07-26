@@ -93,29 +93,42 @@ object Ejercicio4 {
     
       /** Display-related auxiliary functions */
 
-      def display: Calculation[Int] = ???
+      def display: Calculation[Int] =
+        get
 
-      def setDisplay(i: Int): Calculation[Unit] = ???
+      def setDisplay(i: Int): Calculation[Unit] =
+        put(i)
 
       /**
        * PART II. 
        *
        * Implement the calculator API
        */
-      def show(i: Int): Calculation[Int] = ???
+      def show(i: Int): Calculation[Int] =
+        setDisplay(i) >>
+        display
 
-      def add(x: Int): Calculation[Int] = ???
+      def add(x: Int): Calculation[Int] =
+        display >>= { d =>
+          show(d+x)
+        }
 
-      def substract(x: Int): Calculation[Int] = ???
+      def substract(x: Int): Calculation[Int] =
+        display >>= { d =>
+          show(d-x)
+        }
 
-      def multiply(x: Int): Calculation[Int] = ???
+      def multiply(x: Int): Calculation[Int] =
+        display >>= { d => show(d*x) }
 
-      def divide(x: Int): Calculation[Int] = ???
+      def divide(x: Int): Calculation[Int] =
+        display >>= { d => show(d/x) }
 
       // This is the rough equivalent to the `new` operator of the impure
       // version. Basically, it just returns a new calculation which 
       // reset both the memory and the display to 0.
-      def reset(): Calculation[Int] = ???
+      def reset(): Calculation[Int] =
+        show(0)
 
     }
 
@@ -127,7 +140,8 @@ object Ejercicio4 {
      * on a dummy initial state, and pick up just the resulting value.
      */
     object Interpreter{
-      def run[T](program: Calculation[T]): T = ???
+      def run[T](program: Calculation[T]): T =
+        program eval 0
     }
 
     /** 
@@ -137,9 +151,15 @@ object Ejercicio4 {
      */    
     import scalaz.syntax.monad._
 
-    val pureOperation1: Calculation[Int] = ???
+    val pureOperation1: Calculation[Int] =
+      Calculation.reset        >>  // {display =  0, memory =  0}
+      Calculation.show(3)      >>  // {display =  3, memory =  0}
+      Calculation.add(4)       >>  // {display =  7, memory =  0}
+      Calculation.multiply(4)  >>  // {display = 28, memory =  0}
+      Calculation.divide(7)    >>  // {display =  4, memory = 28}
+      Calculation.substract(7)     // {display = -3, memory =  0}
 
-    val operation1: Int = ???
+    val operation1: Int = Interpreter.run(pureOperation1)
 
   }
 
