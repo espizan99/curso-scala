@@ -41,7 +41,7 @@ object HomeworkExtensibility {
      */
     implicit object drawPicture extends DrawPicture
     trait DrawPicture extends Picture[Drawing] with Pictures.Picture.DrawPicture {
-      def beneath(front: Drawing, back: Drawing): Drawing = ???
+      def beneath(front: Drawing, back: Drawing): Drawing = front beneath back
     }
 
     /**
@@ -53,10 +53,10 @@ object HomeworkExtensibility {
      */
     implicit object stringPicture extends StringPicture
     trait StringPicture extends Picture[String] {
-      def place(style: StyleSheet, shape: Shape): String = ???
-      def above(top: String, bottom: String): String = ???
-      def beside(left: String, right: String): String = ???
-      def beneath(front: String, back: String): String = ???
+      def place(style: StyleSheet, shape: Shape): String = s"Place($style, $shape)"
+      def above(top: String, bottom: String): String = s"Above($top, $bottom)"
+      def beside(left: String, right: String): String = s"Beside($left, $right)"
+      def beneath(front: String, back: String): String = s"Beneath($front, $back)"
     }
   }
 
@@ -70,7 +70,8 @@ object HomeworkExtensibility {
    * `Pictures` si no te acuerdas de cómo se hacía.
    */
   implicit class PictureOps[P](p: P)(implicit P: Picture[P]) extends Pictures.PictureOps(p)(P) {
-    def beneath(other: P): P = ???
+    def beneath(other: P): P =
+      P.beneath(p, other)
   }
 
   /**
