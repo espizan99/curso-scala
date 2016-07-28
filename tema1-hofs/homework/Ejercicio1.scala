@@ -4,26 +4,37 @@ object Exercise1 {
 
   object PartI {
     // Implementa `filter` para el tipo `Option`
-    def filter[A](o: Option[A])(p: A => Boolean): Option[A] = ???
+    def filter[A](o: Option[A])(p: A => Boolean): Option[A] = o match {
+      case Some(a) if p(a) => Some(a)
+      case _ => None
+    }
 
     // Implementa `map` para el tipo `Option`
     def map[A, B](o: Option[A])(f: A => B): Option[B] = o match {
-      case None => ???
-      case Some(x) => ???
+      case Some(a) => Some(f(a))
+      case None => None
     }
+
   }
 
   object PartII {
     // Implementa `fold` para el tipo `Option`
-    def fold[A, B](o: Option[A])(b: B)(f: A => B): B = ???
+    def fold[A, B](o: Option[A])(b: B)(f: A => B): B = o match {
+      case Some(a) => f(a)
+      case None => b
+    }
 
     // Implementa `filter` en términos de `fold`
     def filter[A](o: Option[A])(p: A => Boolean): Option[A] =
-      fold(???)(???)(???)
+      fold[A, Option[A]](o)(None)(a =>
+        if (p(a))
+          Some(a)
+        else
+          None)
 
     // Implementa `map` en términos de `fold`
     def map[A, B](o: Option[A])(f: A => B): Option[B] =
-      fold(???)(???)(???)
+      fold[A, Option[B]](o)(None)(a => Some(f(a)))
 
   }
 }
