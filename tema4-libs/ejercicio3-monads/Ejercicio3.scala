@@ -36,13 +36,16 @@ object Ejercicio3{
   object PartI{
     
     // Utilizar `>>`
-    def sayWhat[F[_]: IO: Monad]: F[String] = ???
+    def sayWhat[F[_]: IO: Monad]: F[String] =
+      write("Say what?") >> read
 
     // Utilizar `>>=`
-    def pureEcho[F[_]: IO: Monad]: F[Unit] = ???
+    def pureEcho[F[_]: IO: Monad]: F[Unit] =
+      read >>= (write(_))
 
     // Utilizar `>>!`
-    def pureEcho2[F[_]: IO: Monad]: F[String] = ???
+    def pureEcho2[F[_]: IO: Monad]: F[String] =
+      read >>! (write(_))
   }
   
 }

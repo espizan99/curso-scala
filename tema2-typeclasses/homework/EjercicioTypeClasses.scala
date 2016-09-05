@@ -74,28 +74,28 @@ object HomeworkTypeClasses {
   
     object Number {
       implicit object DoubleNumber extends Number[Double] {
-        def toDouble(d: Double): Double = ???
-        def plus(d1: Double, d2: Double): Double = ???
-        def minus(d1: Double, d2: Double): Double = ???
-        def divide(d1: Double, i2: Int): Double = ???
+        def toDouble(d: Double): Double = d
+        def plus(d1: Double, d2: Double): Double = d1+d2
+        def minus(d1: Double, d2: Double): Double = d1-d2
+        def divide(d1: Double, i2: Int): Double = d1/i2
       }
       implicit object IntNumber extends Number[Int] {
-        def toDouble(i: Int): Double = ???
-        def plus(i1: Int, i2: Int): Int = ???
-        def minus(i1: Int, i2: Int): Int = ???
-        def divide(i1: Int, i2: Int): Double = ???
+        def toDouble(i: Int): Double = i
+        def plus(i1: Int, i2: Int): Int = i1+i2
+        def minus(i1: Int, i2: Int): Int = i1-i2
+        def divide(i1: Int, i2: Int): Double = toDouble(i1)/i2
       }
       implicit object LongNumber extends Number[Long] {
-        def toDouble(l: Long): Double = ???
-        def plus(l1: Long, l2: Long): Long = ???
-        def minus(l1: Long, l2: Long): Long = ???
-        def divide(l1: Long, i2: Int): Double = ???
+        def toDouble(l: Long): Double = l
+        def plus(l1: Long, l2: Long): Long = l1+l2
+        def minus(l1: Long, l2: Long): Long = l1-l2
+        def divide(l1: Long, i2: Int): Double = toDouble(l1)/i2
       }
       implicit object FloatNumber extends Number[Float] {
-        def toDouble(f: Float): Double = ???
-        def plus(f1: Float, f2: Float): Float = ???
-        def minus(f1: Float, f2: Float): Float = ???
-        def divide(f1: Float, i2: Int): Double = ???
+        def toDouble(f: Float): Double = f
+        def plus(f1: Float, f2: Float): Float = f1+f2
+        def minus(f1: Float, f2: Float): Float = f1-f2
+        def divide(f1: Float, i2: Int): Double = toDouble(f1)/i2
       }
     }
   }
@@ -110,11 +110,14 @@ object HomeworkTypeClasses {
   
     import TypeClassParaEstadisticas._
 
-    def sum[T](ts: List[T])(implicit ev: Number[T]): T = ???
+    def sum[T](ts: List[T])(implicit ev: Number[T]): T =
+      ts.reduce(ev.plus(_,_))
 
-    def avg[T](ts: List[T])(implicit ev: Number[T]): Double = ???
+    def avg[T](ts: List[T])(implicit ev: Number[T]): Double =
+      ev.divide(sum(ts), ts.size)
 
-    def variance[T](ts: List[T])(implicit ev: Number[T]): Double = ???
+    def variance[T](ts: List[T])(implicit ev: Number[T]): Double =
+      avg(ts.map(f => math.pow(avg(ts) - ev.toDouble(f), 2)))
 
   }
 

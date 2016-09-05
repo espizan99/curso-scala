@@ -55,7 +55,10 @@ object HomeworkTypeConstructors {
      *
      * Crea una type class que permita trabajar con colecciones genéricas
      */
-    trait Lista[L[_]] { /*...*/ }
+    trait Lista[L[_]] {
+      def nil[A]: L[A]
+      def cons[A](head: A, tail: L[A]): L[A]
+    }
 
     /**
      * Part II.
@@ -64,7 +67,7 @@ object HomeworkTypeConstructors {
      * para insertar elementos en la colección
      */
     implicit class ListaOps[L[_], A](l: L[A])(implicit L: Lista[L]) {
-      def ::(elem: A): L[A] = ???
+      def ::(elem: A): L[A] = L.cons(elem, l)
     }
 
     /**
@@ -73,22 +76,28 @@ object HomeworkTypeConstructors {
      * Utiliza la type class para crear 2 ejemplos de colecciones, una de
      * `Int` y otra de `String`
      */
-    def sample[L[_]](implicit L: Lista[L]): L[Int] = ???
-    def sample2[L[_]](implicit L: Lista[L]): L[String] = ???
+    def sample[L[_]](implicit L: Lista[L]): L[Int] = 1 :: 2 :: 3 :: L.nil
+    def sample2[L[_]](implicit L: Lista[L]): L[String] = "1" :: "2" :: "3" :: L.nil
 
     /**
      * Part IV.
      *
      * Crea una instancia de la type class para `List`
      */
-    implicit object listMyListInstance extends Lista[List] { /*...*/ }
+    implicit object listMyListInstance extends Lista[List] {
+      def nil[A] = List.empty[A]
+      def cons[A](head: A, tail: List[A]) = head :: tail
+    }
       
     /**
      * Part V.
      *
      * Crea una instancia de la type class para `Vector`
      */
-    implicit object vectorMyListInstance extends Lista[Vector] { /*...*/ }
+    implicit object vectorMyListInstance extends Lista[Vector] {
+      def nil[A] = Vector.empty[A]
+      def cons[A](head: A, tail: Vector[A]) = head +: tail
+    }
 
     /**
      * Part VI.
@@ -96,10 +105,10 @@ object HomeworkTypeConstructors {
      * Materializa los ejemplos anteriores para nuestras dos implementaciones
      * de la type class
      */
-    val sampleList: List[Int] = ???
-    val sampleVector: Vector[Int] = ???
-    val sample2List: List[String] = ???
-    val sample2Vector: Vector[String] = ???
+    val sampleList: List[Int] = sample[List]
+    val sampleVector: Vector[Int] = sample[Vector]
+    val sample2List: List[String] = sample2[List]
+    val sample2Vector: Vector[String] = sample2[Vector]
   }
 
 }

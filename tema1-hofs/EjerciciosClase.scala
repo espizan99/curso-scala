@@ -1,4 +1,4 @@
-package org.hablapps.fpinscala.hofs;
+package org.hablapps.fpinscala.hofs
 
 object EjerciciosClase {
 
@@ -7,10 +7,10 @@ object EjerciciosClase {
   object Tetris {
     import diagrams._, Shapes._, StyleSheets._, Pictures._
 
-    // Se proporciona una Picture que representa un cuadrado de 100 x 100
+    // Se proporciona una Picture que representa un cuadrado de 1 x 1
     // Utiliza estos "bloques" para crear las figuras
     def block(c: Color): Picture =
-      Place(FillColor(c) :: Nil, Rectangle(100, 100))
+      Place(FillColor(c) :: Nil, Rectangle(1, 1))
 
     val I: Picture =
       block(Maroon) above
@@ -24,30 +24,19 @@ object EjerciciosClase {
       (block(LightGray) beside block(LightGray))
 
     // Utiliza el color `Purple` para esta figura
-    val L: Picture =
-      (block(Purple) beside block(Alpha)) above
-      (block(Purple) beside block(Alpha)) above
-      (block(Purple) beside block(Purple))
+    val L: Picture = ???
 
     // Utiliza el color `NavyBlue` para esta figura
-    val O: Picture =
-      (block(NavyBlue) beside block(NavyBlue)) above
-      (block(NavyBlue) beside block(NavyBlue))
+    val O: Picture = ???
 
     // Utiliza el color `DarkGreen` para esta figura
-    val S: Picture =
-      (block(Alpha) beside block(DarkGreen) beside block(DarkGreen)) above
-      (block(DarkGreen) beside block(DarkGreen) beside block(Alpha))
+    val S: Picture = ???
 
     // Utiliza el color `Brown` para esta figura
-    val T: Picture =
-      (block(Brown) beside block(Brown) beside block(Brown)) above
-      (block(Alpha) beside block(Brown) beside block(Alpha))
+    val T: Picture = ???
 
     // Utiliza el color `Teal` para esta figura
-    val Z: Picture =
-      (block(Teal) beside block(Teal) beside block(Alpha)) above
-      (block(Alpha) beside block(Teal) beside block(Teal))
+    val Z: Picture = ???
 
     def comprobacion = {
       println("L:")
@@ -66,8 +55,8 @@ object EjerciciosClase {
   // Ejercicio composición de funciones: Implementar
   // 'compose' y después implementar 'andThen' a partir de 'compose':
   object ComposicionFunciones {
-    def compose[A,B,C](g: B => C, f: A => B): A => C = (a: A) => g(f(a))
-    def andThen[A,B,C](f: A => B, g: B => C): A => C = compose(g, f)
+    def compose[A,B,C](g: B => C, f: A => B): A => C = ???
+    def andThen[A,B,C](f: A => B, g: B => C): A => C = ???
 
     def comprobacion = {
       def square(i:Int) = i * i
@@ -98,9 +87,7 @@ object EjerciciosClase {
       case Cons(h, t) => cons(h, fold(t)(nil, cons))
     }
 
-    def filter[A](l: List[A])(p: A => Boolean): List[A] = {
-      fold[A, List[A]](l)(List(), (a: A, b: List[A]) => if(p(a))  Cons(a, b) else b)
-    }
+    def filter[A](l: List[A])(p: A => Boolean): List[A] = ???
     
     def comprobacion = {
       val l1 = List("","hola","que","","tal")
@@ -111,12 +98,12 @@ object EjerciciosClase {
   }
 
   // Descomenta la siguiente línea para comprobar el Ejercicio1
-  Tetris.comprobacion
+  // Tetris.comprobacion
 
   // Descomenta la siguiente línea para comprobar el Ejercicio2
-  //ComposicionFunciones.comprobacion
+  // ComposicionFunciones.comprobacion
 
   // Descomenta la siguiente línea para comprobar el Ejercicio3
-  FilterEnFuncionDeFoldParaListas.comprobacion
+  // FilterEnFuncionDeFoldParaListas.comprobacion
 
 }
