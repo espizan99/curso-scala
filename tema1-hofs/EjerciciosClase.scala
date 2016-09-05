@@ -24,19 +24,30 @@ object EjerciciosClase {
       (block(LightGray) beside block(LightGray))
 
     // Utiliza el color `Purple` para esta figura
-    val L: Picture = ???
+    val L: Picture =
+      (block(Purple) beside block(Alpha)) above
+      (block(Purple) beside block(Alpha)) above
+      (block(Purple) beside block(Purple))
 
     // Utiliza el color `NavyBlue` para esta figura
-    val O: Picture = ???
+    val O: Picture =
+      (block(NavyBlue) beside block(NavyBlue)) above
+      (block(NavyBlue) beside block(NavyBlue))
 
     // Utiliza el color `DarkGreen` para esta figura
-    val S: Picture = ???
+    val S: Picture =
+      (block(Alpha)     beside block(DarkGreen) beside block(DarkGreen)) above
+      (block(DarkGreen) beside block(DarkGreen) beside block(Alpha))
 
     // Utiliza el color `Brown` para esta figura
-    val T: Picture = ???
+    val T: Picture =
+      (block(Brown) beside block(Brown) beside block(Brown)) above
+      (block(Alpha) beside block(Brown) beside block(Alpha))
 
     // Utiliza el color `Teal` para esta figura
-    val Z: Picture = ???
+    val Z: Picture =
+      (block(Teal) beside block(Teal) beside block(Alpha)) above
+      (block(Alpha) beside block(Teal) beside block(Teal))
 
     def comprobacion = {
       println("L:")
@@ -55,8 +66,8 @@ object EjerciciosClase {
   // Ejercicio composición de funciones: Implementar
   // 'compose' y después implementar 'andThen' a partir de 'compose':
   object ComposicionFunciones {
-    def compose[A,B,C](g: B => C, f: A => B): A => C = ???
-    def andThen[A,B,C](f: A => B, g: B => C): A => C = ???
+    def compose[A,B,C](g: B => C, f: A => B): A => C = a => g(f(a))
+    def andThen[A,B,C](f: A => B, g: B => C): A => C = compose(g, f)
 
     def comprobacion = {
       def square(i:Int) = i * i
@@ -87,7 +98,12 @@ object EjerciciosClase {
       case Cons(h, t) => cons(h, fold(t)(nil, cons))
     }
 
-    def filter[A](l: List[A])(p: A => Boolean): List[A] = ???
+    def filter[A](l: List[A])(p: A => Boolean): List[A] =
+      fold[A, List[A]](l)(Nil[A], (a, filtered) =>
+        if (p(a))
+          Cons(a, filtered)
+        else
+          filtered)
     
     def comprobacion = {
       val l1 = List("","hola","que","","tal")
